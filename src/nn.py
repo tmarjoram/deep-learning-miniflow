@@ -16,11 +16,11 @@ build a network that solves the equation below?
 
 from miniflow import *
 
-x, y = Input(), Input()
+x, y, z = Input(), Input(), Input()
 
-f = Add(x, y)
+f = Mul([x, y, z])
 
-feed_dict = {x: 10, y: 5}
+feed_dict = {x: 10, y: 5, z:2}
 
 sorted_nodes = topological_sort(feed_dict)
 output = forward_pass(f, sorted_nodes)

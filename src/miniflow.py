@@ -46,10 +46,10 @@ class Input(Node):
 
 
 class Add(Node):
-    def __init__(self, x, y):
+    def __init__(self, inputs):
         # You could access `x` and `y` in forward with
         # self.inbound_nodes[0] (`x`) and self.inbound_nodes[1] (`y`)
-        Node.__init__(self, [x, y])
+        Node.__init__(self, inputs)
 
     def forward(self):
         """
@@ -60,6 +60,26 @@ class Add(Node):
         self.value=0
         for i in self.inbound_nodes:
             self.value+=i.value
+            
+        for o in self.outbound_nodes:
+            o.forward()
+            
+
+class Mul(Node):
+    def __init__(self, inputs):
+        # You could access `x` and `y` in forward with
+        # self.inbound_nodes[0] (`x`) and self.inbound_nodes[1] (`y`)
+        Node.__init__(self, inputs)
+
+    def forward(self):
+        """
+        Set the value of this node (`self.value`) to the sum of its inbound_nodes.
+
+        Your code here!
+        """
+        self.value=1
+        for i in self.inbound_nodes:
+            self.value*=i.value
             
         for o in self.outbound_nodes:
             o.forward()
